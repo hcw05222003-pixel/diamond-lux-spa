@@ -56,7 +56,7 @@
             address: "12276 San Jose Blvd suite 713, Jacksonville, FL 32223"
         };
 
-        // --- SERVICES DATA (No Prices, With Live Calendly Links) ---
+        // --- SERVICES DATA ---
         const services = [
             { 
                 id: 1, 
@@ -100,7 +100,7 @@
             </div>
         );
 
-        const Navbar = ({ goToHome, goToServices, goToContact, goToBooking }) => (
+        const Navbar = ({ goToHome, goToAbout, goToServices, goToContact, goToBooking }) => (
             <nav className="sticky top-0 z-50 glass shadow-sm border-b border-gray-200">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-20 items-center">
@@ -111,6 +111,7 @@
                         </div>
                         <div className="hidden md:flex space-x-8">
                             <button onClick={goToHome} className="text-charcoal hover:text-softPink transition font-medium">Home</button>
+                            <button onClick={goToAbout} className="text-charcoal hover:text-softPink transition font-medium">About Us</button>
                             <button onClick={goToServices} className="text-charcoal hover:text-softPink transition font-medium">Services</button>
                             <button onClick={goToContact} className="text-charcoal hover:text-softPink transition font-medium">Contact</button>
                         </div>
@@ -122,6 +123,72 @@
                     </div>
                 </div>
             </nav>
+        );
+
+        // --- ABOUT US PAGE ---
+        const AboutUs = ({ goToBooking }) => (
+            <div className="pt-16 pb-32 max-w-7xl mx-auto px-4 fade-in min-h-[70vh]">
+                <div className="text-center mb-16">
+                    <span className="bg-softPink text-black px-4 py-1 rounded-full font-semibold tracking-widest uppercase mb-6 text-xs md:text-sm shadow-sm inline-block">Our Story</span>
+                    <h1 className="text-5xl font-serif font-bold text-black mb-6 mt-4">20 Years of Premium Pet Care</h1>
+                    <p className="text-xl text-charcoal max-w-3xl mx-auto leading-relaxed">
+                        At Diamond Lux Pet Spa, we believe that grooming is more than just a haircut—it’s an essential part of your pet’s overall health, happiness, and well-being.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
+                    <div className="rounded-3xl overflow-hidden shadow-xl h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80" alt="Happy dog getting pampered" className="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                        <h2 className="text-3xl font-serif font-bold text-black mb-6">Deep Roots in Jacksonville</h2>
+                        <p className="text-charcoal mb-4 leading-relaxed text-lg">
+                            For over two decades, Diamond Lux Pet Spa has been a proud, trusted fixture in the Jacksonville, Florida community. What started 20 years ago as a family-run passion project has blossomed into the city's premier destination for luxury pet styling. 
+                        </p>
+                        <p className="text-charcoal mb-4 leading-relaxed text-lg">
+                            We have spent the last 20 years perfecting our craft, building lifelong relationships with our clients, and watching generations of pets grow up in our care. Being based right here on San Jose Blvd means we intimately understand the unique needs of Florida pets—from managing heavy shedding during our warmer months to protecting sensitive skin from the elements.
+                        </p>
+                        <p className="text-charcoal leading-relaxed text-lg font-medium">
+                            Our long-standing history is a testament to the absolute trust our community places in us every single day.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="bg-white p-10 md:p-16 rounded-3xl shadow-lg border border-gray-100 mb-20 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-pink-50 rounded-full -mr-20 -mt-20 opacity-50"></div>
+                    <div className="relative z-10">
+                        <h2 className="text-4xl font-serif font-bold text-black mb-6 text-center">Our Mission</h2>
+                        <p className="text-charcoal text-lg mb-10 leading-relaxed text-center max-w-4xl mx-auto">
+                            Our mission is simple: to provide an elite, premium grooming experience that doesn't compromise on competitive market value. We strive to set the gold standard in the pet care industry by combining high-end luxury with genuine, compassionate care that puts your pet's physical and mental health first.
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                            <div className="text-center p-6 rounded-2xl bg-lightGrey border border-gray-100 hover:border-softPink transition">
+                                <div className="w-16 h-16 bg-softPink text-black rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm"><i className="fa-solid fa-heart-pulse"></i></div>
+                                <h4 className="font-bold text-xl mb-3 text-black">Holistic Health First</h4>
+                                <p className="text-sm text-gray-600 leading-relaxed">Every bath, brush, and trim is meticulously designed to support your pet's dermatological and physical well-being. We exclusively use top-tier, pet-safe, and nourishing products.</p>
+                            </div>
+                            <div className="text-center p-6 rounded-2xl bg-lightGrey border border-gray-100 hover:border-softPink transition">
+                                <div className="w-16 h-16 bg-softPink text-black rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm"><i className="fa-solid fa-spa"></i></div>
+                                <h4 className="font-bold text-xl mb-3 text-black">Stress-Free Environment</h4>
+                                <p className="text-sm text-gray-600 leading-relaxed">We know grooming can be scary. We maintain a calm, soothing, and unhurried atmosphere so your furry family members feel safe, loved, and relaxed throughout their entire spa day.</p>
+                            </div>
+                            <div className="text-center p-6 rounded-2xl bg-lightGrey border border-gray-100 hover:border-softPink transition">
+                                <div className="w-16 h-16 bg-softPink text-black rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm"><i className="fa-solid fa-award"></i></div>
+                                <h4 className="font-bold text-xl mb-3 text-black">Unmatched Value</h4>
+                                <p className="text-sm text-gray-600 leading-relaxed">With two decades of expertise, our styling and safety standards are unmatched. We are proud to offer competitive pricing and aggressive marketing value for a truly luxurious, high-end service.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="text-center bg-black p-12 rounded-3xl shadow-xl">
+                    <h3 className="text-3xl font-serif font-bold text-white mb-6">Become Part of the Diamond Lux Family</h3>
+                    <p className="text-lightGrey mb-8 max-w-2xl mx-auto text-lg">Experience the difference that 20 years of dedicated, premium care makes for your pet.</p>
+                    <button onClick={() => goToBooking()} className="bg-softPink text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-pink-300 transition shadow-xl transform hover:-translate-y-1">
+                        Book Your Pet's First Spa Day
+                    </button>
+                </div>
+            </div>
         );
 
         // --- TWO-STEP BOOKING INTEGRATION ---
@@ -139,7 +206,6 @@
                 }
             }, [activeLink]);
 
-            // STEP 2: The Iframe Calendar View
             if (isScheduling && selectedService) {
                 return (
                     <div className="max-w-5xl mx-auto py-12 px-4 fade-in">
@@ -162,7 +228,6 @@
                 );
             }
 
-            // STEP 1: Service Selection View
             return (
                 <div className="max-w-4xl mx-auto py-12 px-4 fade-in">
                     <div className="text-center mb-10">
@@ -385,6 +450,7 @@
             }, [view]);
 
             const goToHome = () => { setActiveLink(null); setView('home'); };
+            const goToAbout = () => { setActiveLink(null); setView('about'); };
             const goToServices = () => { setActiveLink(null); setView('services'); };
             const goToContact = () => { setActiveLink(null); setView('contact'); };
             
@@ -396,10 +462,11 @@
             return (
                 <div className="font-sans text-charcoal flex flex-col min-h-screen">
                     <UrgencyBanner />
-                    <Navbar goToHome={goToHome} goToServices={goToServices} goToContact={goToContact} goToBooking={goToBooking} />
+                    <Navbar goToHome={goToHome} goToAbout={goToAbout} goToServices={goToServices} goToContact={goToContact} goToBooking={goToBooking} />
                     
                     <main className="flex-grow">
                         {view === 'home' && <Home goToBooking={goToBooking} goToServices={goToServices} />}
+                        {view === 'about' && <AboutUs goToBooking={goToBooking} />}
                         {view === 'booking' && <BookingSystem activeLink={activeLink} setActiveLink={setActiveLink} />}
                         {view === 'contact' && <Contact goToBooking={goToBooking} />}
                         {view === 'services' && <ServicesList goToBooking={goToBooking} />}
