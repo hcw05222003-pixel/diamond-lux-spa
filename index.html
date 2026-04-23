@@ -41,7 +41,6 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .logo-blend { mix-blend-mode: multiply; } 
     </style>
 </head>
 <body>
@@ -54,8 +53,7 @@
         const bizInfo = {
             phone: "904-679-2971",
             phoneLink: "tel:9046792971",
-            address: "12276 San Jose Blvd suite 713, Jacksonville, FL 32223",
-            logoPath: "diamondluxlogo.png" 
+            address: "12276 San Jose Blvd suite 713, Jacksonville, FL 32223"
         };
 
         // --- SERVICES DATA (No Prices, With Live Calendly Links) ---
@@ -81,7 +79,7 @@
                 name: "De-shedding Treatment", 
                 duration: "Approx. 1.5 Hours", 
                 desc: "Specialized shampoo and intense undercoat removal for a cleaner home.", 
-                img: "https://images.unsplash.com/photo-1537151608804-ea6d11542123?auto=format&fit=crop&w=500&q=80",
+                img: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80",
                 link: "https://calendly.com/office-diamondluxpetspa/bath-brush-spa-clone" 
             },
             { 
@@ -107,12 +105,9 @@
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-20 items-center">
                         <div className="flex items-center cursor-pointer" onClick={goToHome}>
-                            <div className="h-14 w-auto flex items-center justify-center bg-white rounded">
-                                <img src={bizInfo.logoPath} alt="Diamond Lux Pet Spa Logo" 
-                                     className="h-12 object-contain logo-blend" 
-                                     onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
-                                <span style={{display: 'none'}} className="font-serif font-bold text-xl text-black tracking-wide">Diamond Lux Pet Spa</span>
-                            </div>
+                            <span className="font-serif font-bold text-2xl text-black tracking-wide">
+                                Diamond Lux <span className="text-softPink">Pet Spa</span>
+                            </span>
                         </div>
                         <div className="hidden md:flex space-x-8">
                             <button onClick={goToHome} className="text-charcoal hover:text-softPink transition font-medium">Home</button>
@@ -346,9 +341,9 @@
                 <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
                     <div>
                         <div className="flex items-center mb-6">
-                            <div className="h-12 w-auto bg-white p-1 rounded inline-flex">
-                                <img src={bizInfo.logoPath} alt="Diamond Lux Pet Spa Logo" className="h-10 object-contain logo-blend" onError={(e) => e.target.style.display = 'none'} />
-                            </div>
+                            <span className="font-serif font-bold text-2xl text-white tracking-wide">
+                                Diamond Lux <span className="text-softPink">Pet Spa</span>
+                            </span>
                         </div>
                         <p className="text-sm text-gray-400 leading-relaxed">Jacksonville's premier luxury pet spa, dedicated to safe, clean, and premium care for your furry family members.</p>
                     </div>
