@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; font-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Diamond Lux Pet Spa in Jacksonville, FL. Luxury, safe, and family-friendly pet grooming at 12276 San Jose Blvd. Book your pet's appointment today!">
@@ -206,4 +207,199 @@
                                     <p className="text-sm font-semibold text-gray-500 mb-3"><i className="fa-regular fa-clock mr-1"></i> {svc.duration}</p>
                                     <p className="text-charcoal mb-4">{svc.desc}</p>
                                 </div>
-                                <a href={bizInfo.phoneLink} className="inline-block text
+                                <a href={bizInfo.phoneLink} className="inline-block text-left font-bold text-black hover:text-softPink transition group w-fit">
+                                    Call to book this service <i className="fa-solid fa-arrow-right ml-1 transform group-hover:translate-x-1 transition"></i>
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const Home = ({ goToServices }) => (
+            <div className="fade-in">
+                <header className="relative bg-black">
+                    <div className="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=2000" alt="Luxury Dog Grooming" className="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition duration-1000" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    </div>
+                    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 flex flex-col items-center text-center">
+                        <span className="bg-softPink text-black px-4 py-1 rounded-full font-semibold tracking-widest uppercase mb-6 text-xs md:text-sm shadow-sm">Jacksonville's Premier Pet Spa</span>
+                        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                            Luxury Grooming for <br/>Pets That Deserve the Best
+                        </h1>
+                        <p className="text-lg md:text-xl text-lightGrey mb-10 max-w-2xl drop-shadow">
+                            Experience a stress-free, exceptionally clean, and family-friendly spa day for your furry companion. Safety and premium care guaranteed.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <a href={bizInfo.phoneLink} className="inline-block bg-softPink text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-pink-300 transition shadow-xl transform hover:-translate-y-1">
+                                <i className="fa-solid fa-phone mr-2"></i> Call to Book
+                            </a>
+                            <button onClick={() => goToServices()} className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-black transition">
+                                View Services
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <div className="bg-white border-b border-gray-200 py-8">
+                    <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-gray-100">
+                        <div><i className="fa-solid fa-shield-dog text-softPink text-3xl mb-3 drop-shadow-sm"></i><p className="font-semibold text-black">Safe & Certified</p></div>
+                        <div><i className="fa-solid fa-heart text-softPink text-3xl mb-3 drop-shadow-sm"></i><p className="font-semibold text-black">Stress-Free Care</p></div>
+                        <div><i className="fa-solid fa-star text-softPink text-3xl mb-3 drop-shadow-sm"></i><p className="font-semibold text-black">100+ Happy Clients</p></div>
+                        <div><i className="fa-solid fa-spray-can-sparkles text-softPink text-3xl mb-3 drop-shadow-sm"></i><p className="font-semibold text-black">Premium Products</p></div>
+                    </div>
+                </div>
+
+                <section className="bg-black py-24 text-center px-4">
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">Treat Your Pet to Luxury Today</h2>
+                    <p className="text-lightGrey mb-10 max-w-xl mx-auto text-lg">Join the Diamond Lux family and give your pet the safe, premium grooming experience they deserve.</p>
+                    <a href={bizInfo.phoneLink} className="inline-block bg-softPink text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-pink-300 transition shadow-xl transform hover:-translate-y-1">
+                        <i className="fa-solid fa-phone mr-2"></i> Call {bizInfo.phone} to Book
+                    </a>
+                </section>
+            </div>
+        );
+
+        const Contact = () => (
+            <div className="pt-16 pb-32 max-w-7xl mx-auto px-4 fade-in min-h-[70vh]">
+                <div className="text-center mb-16">
+                    <h1 className="text-5xl font-serif font-bold text-black mb-4">Contact & Location</h1>
+                    <p className="text-xl text-charcoal">We look forward to pampering your pet.</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-gray-100">
+                    <div>
+                        <h3 className="text-2xl font-serif font-bold text-black mb-6">Visit Our Spa</h3>
+                        <div className="space-y-6">
+                            <div className="flex items-start">
+                                <div className="bg-pink-50 p-3 rounded-full text-softPink mr-4">
+                                    <i className="fa-solid fa-location-dot text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-black text-lg">Address</h4>
+                                    <p className="text-charcoal mt-1">12276 San Jose Blvd suite 713<br/>Jacksonville, FL 32223</p>
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-start">
+                                <div className="bg-pink-50 p-3 rounded-full text-softPink mr-4">
+                                    <i className="fa-solid fa-phone text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-black text-lg">Phone</h4>
+                                    <a href={bizInfo.phoneLink} className="text-charcoal mt-1 hover:text-softPink transition inline-block">{bizInfo.phone}</a>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start">
+                                <div className="bg-pink-50 p-3 rounded-full text-softPink mr-4">
+                                    <i className="fa-solid fa-clock text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-black text-lg">Business Hours</h4>
+                                    <ul className="text-charcoal mt-1 space-y-1">
+                                        <li><span className="font-semibold w-24 inline-block">Tue - Fri:</span> 8:30 AM – 6:00 PM</li>
+                                        <li><span className="font-semibold w-24 inline-block">Sat:</span> 10:00 AM – 5:00 PM</li>
+                                        <li className="text-softPink font-semibold mt-2">Sun & Mon: Closed</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href={bizInfo.phoneLink} className="mt-10 inline-block text-center bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-charcoal transition w-full md:w-auto shadow-md">
+                            <i className="fa-solid fa-phone mr-2"></i> Call to Book
+                        </a>
+                    </div>
+                    
+                    <div className="bg-lightGrey rounded-2xl overflow-hidden h-64 md:h-full min-h-[300px] border border-gray-200">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3450.4571991864115!2d-81.6263435848827!3d30.13840748184784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e5cf5ec79a11a9%3A0x6e9f225eb5782782!2s12276%20San%20Jose%20Blvd%20Suite%20713%2C%20Jacksonville%2C%20FL%2032223!5e0!3m2!1sen!2sus!4v1698249000000!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="100%" 
+                            style={{border:0}} 
+                            allowFullScreen="" 
+                            loading="lazy" 
+                            referrerPolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const Footer = () => (
+            <footer className="bg-black text-lightGrey py-16 border-t-4 border-softPink">
+                <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+                    <div>
+                        <div className="flex items-center mb-6">
+                            <span className="font-serif font-bold text-2xl text-white tracking-wide">
+                                Diamond Lux <span className="text-softPink">Pet Spa</span>
+                            </span>
+                        </div>
+                        <p className="text-sm text-gray-400 leading-relaxed">Jacksonville's premier luxury pet spa, dedicated to safe, clean, and premium care for your furry family members.</p>
+                    </div>
+                    <div>
+                        <h4 className="text-white font-bold mb-6 uppercase text-sm tracking-wider">Contact Us</h4>
+                        <ul className="space-y-3 text-sm text-gray-400">
+                            <li><i className="fa-solid fa-phone mr-2 text-softPink"></i> <a href={bizInfo.phoneLink} className="hover:text-white transition">{bizInfo.phone}</a></li>
+                            <li className="leading-relaxed"><i className="fa-solid fa-location-dot mr-2 text-softPink"></i> {bizInfo.address}</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="text-white font-bold mb-6 uppercase text-sm tracking-wider">Hours</h4>
+                        <ul className="space-y-3 text-sm text-gray-400">
+                            <li><span className="text-white font-semibold">Tue - Fri:</span><br/>8:30 AM - 6:00 PM</li>
+                            <li><span className="text-white font-semibold">Sat:</span><br/>10:00 AM - 5:00 PM</li>
+                            <li><span className="text-softPink font-semibold">Sun & Mon:</span> Closed</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="text-white font-bold mb-6 uppercase text-sm tracking-wider">Follow Us</h4>
+                        <div className="flex space-x-4">
+                            <a href="#" className="w-10 h-10 bg-charcoal rounded-full flex items-center justify-center text-white hover:bg-softPink hover:text-black transition"><i className="fa-brands fa-instagram"></i></a>
+                            <a href="#" className="w-10 h-10 bg-charcoal rounded-full flex items-center justify-center text-white hover:bg-softPink hover:text-black transition"><i className="fa-brands fa-facebook"></i></a>
+                            <a href="#" className="w-10 h-10 bg-charcoal rounded-full flex items-center justify-center text-white hover:bg-softPink hover:text-black transition"><i className="fa-brands fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div className="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-gray-800 text-sm text-center text-gray-500">
+                    © {new Date().getFullYear()} Diamond Lux Pet Spa. Designed for Conversion. SEO: Pet Grooming Jacksonville FL.
+                </div>
+            </footer>
+        );
+
+        const App = () => {
+            const [view, setView] = useState('home');
+
+            useEffect(() => {
+                window.scrollTo(0, 0);
+            }, [view]);
+
+            const goToHome = () => setView('home');
+            const goToAbout = () => setView('about');
+            const goToServices = () => setView('services');
+            const goToContact = () => setView('contact');
+
+            return (
+                <div className="font-sans text-charcoal flex flex-col min-h-screen">
+                    <UrgencyBanner />
+                    <Navbar goToHome={goToHome} goToAbout={goToAbout} goToServices={goToServices} goToContact={goToContact} />
+                    
+                    <main className="flex-grow">
+                        {view === 'home' && <Home goToServices={goToServices} />}
+                        {view === 'about' && <AboutUs />}
+                        {view === 'contact' && <Contact />}
+                        {view === 'services' && <ServicesList />}
+                    </main>
+
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
