@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; font-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Diamond Lux Pet Spa in Jacksonville, FL. Luxury, safe, and family-friendly pet grooming at 12276 San Jose Blvd. Book your pet's appointment today!">
@@ -11,9 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Removed React and Babel. Only keeping Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
@@ -41,365 +38,362 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hidden { display: none !important; }
     </style>
 </head>
-<body>
-    <div id="root"></div>
+<body class="font-sans text-charcoal flex flex-col min-h-screen">
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+    <!-- URGENCY BANNER -->
+    <div class="bg-softPink text-black text-center py-2 text-sm font-semibold tracking-wide border-b border-pink-300">
+        <i class="fa-solid fa-clock mr-2"></i> Limited spots available this week! Call 904-679-2971 to book.
+    </div>
 
-        // --- BUSINESS INFO ---
-        const bizInfo = {
-            phone: "904-679-2971",
-            phoneLink: "tel:9046792971",
-            address: "12276 San Jose Blvd suite 713, Jacksonville, FL 32223"
-        };
-
-        // --- SERVICES DATA ---
-        const services = [
-            { 
-                id: 1, 
-                name: "Full Luxury Groom", 
-                duration: "Approx. 2-4 Hours", 
-                desc: "Premium bath, full haircut, nail grinding, ear cleaning, and a spritz of luxury cologne.", 
-                img: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=500&q=80"
-            },
-            { 
-                id: 2, 
-                name: "Bath & Brush Spa", 
-                duration: "Approx. 2-4 Hours", 
-                desc: "Invigorating massage bath, blow dry, thorough brush out, and nail trim.", 
-                img: "https://t4.ftcdn.net/jpg/02/96/15/07/360_F_296150735_3rtwuCmcx4hWVHXEdpzGqJHle8Doak4U.jpg"
-            },
-            { 
-                id: 3, 
-                name: "De-shedding Treatment", 
-                duration: "Approx. 2-4 Hours", 
-                desc: "Specialized shampoo and intense undercoat removal for a cleaner home.", 
-                img: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80"
-            },
-            { 
-                id: 4, 
-                name: "Puppy's First Spa", 
-                duration: "Approx. 2-4 Hours", 
-                desc: "Gentle introduction to grooming with a bath, light trim, and lots of love.", 
-                img: "https://images.unsplash.com/photo-1591160690555-5debfba289f0?auto=format&fit=crop&w=500&q=80"
-            }
-        ];
-
-        // --- COMPONENTS ---
-
-        const UrgencyBanner = () => (
-            <div className="bg-softPink text-black text-center py-2 text-sm font-semibold tracking-wide border-b border-pink-300">
-                <i className="fa-solid fa-clock mr-2"></i> Limited spots available this week! Call {bizInfo.phone} to book.
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 glass shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center cursor-pointer" onclick="showPage('home')">
+                    <span class="font-serif font-bold text-2xl text-black tracking-wide">
+                        Diamond Lux <span class="text-softPink">Pet Spa</span>
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="showPage('home')" class="text-charcoal hover:text-softPink transition font-medium">Home</button>
+                    <button onclick="showPage('about')" class="text-charcoal hover:text-softPink transition font-medium">About Us</button>
+                    <button onclick="showPage('services')" class="text-charcoal hover:text-softPink transition font-medium">Services</button>
+                    <button onclick="showPage('contact')" class="text-charcoal hover:text-softPink transition font-medium">Contact</button>
+                </div>
+                <div>
+                    <a href="tel:9046792971" class="inline-block bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-charcoal transition shadow-lg transform hover:-translate-y-0.5 border border-black">
+                        <i class="fa-solid fa-phone mr-2"></i>Call to Book
+                    </a>
+                </div>
             </div>
-        );
-
-        const Navbar = ({ goToHome, goToAbout, goToServices, goToContact }) => (
-            <nav className="sticky top-0 z-50 glass shadow-sm border-b border-gray-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-20 items-center">
-                        <div className="flex items-center cursor-pointer" onClick={goToHome}>
-                            <span className="font-serif font-bold text-2xl text-black tracking-wide">
-                                Diamond Lux <span className="text-softPink">Pet Spa</span>
-                            </span>
-                        </div>
-                        <div className="hidden md:flex space-x-8">
-                            <button onClick={goToHome} className="text-charcoal hover:text-softPink transition font-medium">Home</button>
-                            <button onClick={goToAbout} className="text-charcoal hover:text-softPink transition font-medium">About Us</button>
-                            <button onClick={goToServices} className="text-charcoal hover:text-softPink transition font-medium">Services</button>
-                            <button onClick={goToContact} className="text-charcoal hover:text-softPink transition font-medium">Contact</button>
-                        </div>
-                        <div>
-                            <a href={bizInfo.phoneLink} className="inline-block bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-charcoal transition shadow-lg transform hover:-translate-y-0.5 border border-black">
-                                <i className="fa-solid fa-phone mr-2"></i>Call to Book
-                            </a>
-                        </div>
+        </div>
+    </nav>
+    
+    <main class="flex-grow">
+        
+        <!-- HOME PAGE -->
+        <section id="home" class="page-section fade-in">
+            <header class="relative bg-black">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=2000" alt="Luxury Dog Grooming" class="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition duration-1000" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                </div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 flex flex-col items-center text-center">
+                    <span class="bg-softPink text-black px-4 py-1 rounded-full font-semibold tracking-widest uppercase mb-6 text-xs md:text-sm shadow-sm">Jacksonville's Premier Pet Spa</span>
+                    <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                        Luxury Grooming for <br/>Pets That Deserve the Best
+                    </h1>
+                    <p class="text-lg md:text-xl text-lightGrey mb-10 max-w-2xl drop-shadow">
+                        Experience a stress-free, exceptionally clean, and family-friendly spa day for your furry companion. Safety and premium care guaranteed.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="tel:9046792971" class="inline-block bg-softPink text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-pink-300 transition shadow-xl transform hover:-translate-y-1">
+                            <i class="fa-solid fa-phone mr-2"></i> Call to Book
+                        </a>
+                        <button onclick="showPage('services')" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-black transition">
+                            View Services
+                        </button>
                     </div>
                 </div>
-            </nav>
-        );
+            </header>
 
-        // --- ABOUT US PAGE ---
-        const AboutUs = () => (
-            <div className="pt-16 pb-32 max-w-7xl mx-auto px-4 fade-in min-h-[70vh]">
-                <div className="text-center mb-16">
-                    <span className="bg-softPink text-black px-4 py-1 rounded-full font-semibold tracking-widest uppercase mb-6 text-xs md:text-sm shadow-sm inline-block">Our Story</span>
-                    <h1 className="text-5xl font-serif font-bold text-black mb-6 mt-4">20 Years of Premium Pet Care</h1>
-                    <p className="text-xl text-charcoal max-w-3xl mx-auto leading-relaxed">
+            <div class="bg-white border-b border-gray-200 py-8">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-gray-100">
+                    <div><i class="fa-solid fa-shield-dog text-softPink text-3xl mb-3 drop-shadow-sm"></i><p class="font-semibold text-black">Safe & Certified</p></div>
+                    <div><i class="fa-solid fa-heart text-softPink text-3xl mb-3 drop-shadow-sm"></i><p class="font-semibold text-black">Stress-Free Care</p></div>
+                    <div><i class="fa-solid fa-star text-softPink text-3xl mb-3 drop-shadow-sm"></i><p class="font-semibold text-black">100+ Happy Clients</p></div>
+                    <div><i class="fa-solid fa-spray-can-sparkles text-softPink text-3xl mb-3 drop-shadow-sm"></i><p class="font-semibold text-black">Premium Products</p></div>
+                </div>
+            </div>
+
+            <section class="bg-black py-24 text-center px-4">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">Treat Your Pet to Luxury Today</h2>
+                <p class="text-lightGrey mb-10 max-w-xl mx-auto text-lg">Join the Diamond Lux family and give your pet the safe, premium grooming experience they deserve.</p>
+                <a href="tel:9046792971" class="inline-block bg-softPink text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-pink-300 transition shadow-xl transform hover:-translate-y-1">
+                    <i class="fa-solid fa-phone mr-2"></i> Call 904-679-2971 to Book
+                </a>
+            </section>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="about" class="page-section fade-in hidden">
+            <div class="pt-16 pb-32 max-w-7xl mx-auto px-4 min-h-[70vh]">
+                <div class="text-center mb-16">
+                    <span class="bg-softPink text-black px-4 py-1 rounded-full font-semibold tracking-widest uppercase mb-6 text-xs md:text-sm shadow-sm inline-block">Our Story</span>
+                    <h1 class="text-5xl font-serif font-bold text-black mb-6 mt-4">20 Years of Premium Pet Care</h1>
+                    <p class="text-xl text-charcoal max-w-3xl mx-auto leading-relaxed">
                         At Diamond Lux Pet Spa, we believe that grooming is more than just a haircut—it’s an essential part of your pet’s overall health, happiness, and well-being.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
-                    <div className="rounded-3xl overflow-hidden shadow-xl h-[450px]">
-                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80" alt="Happy dog getting pampered" className="w-full h-full object-cover" />
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
+                    <div class="rounded-3xl overflow-hidden shadow-xl h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80" alt="Happy dog getting pampered" class="w-full h-full object-cover" />
                     </div>
                     <div>
-                        <h2 className="text-3xl font-serif font-bold text-black mb-6">Deep Roots in Jacksonville</h2>
-                        <p className="text-charcoal mb-4 leading-relaxed text-lg">
+                        <h2 class="text-3xl font-serif font-bold text-black mb-6">Deep Roots in Jacksonville</h2>
+                        <p class="text-charcoal mb-4 leading-relaxed text-lg">
                             For over two decades, Diamond Lux Pet Spa has been a proud, trusted fixture in the Jacksonville, Florida community. What started 20 years ago as a family-run passion project has blossomed into the city's premier destination for luxury pet styling. 
                         </p>
-                        <p className="text-charcoal mb-4 leading-relaxed text-lg">
+                        <p class="text-charcoal mb-4 leading-relaxed text-lg">
                             We have spent the last 20 years perfecting our craft, building lifelong relationships with our clients, and watching generations of pets grow up in our care. Being based right here on San Jose Blvd means we intimately understand the unique needs of Florida pets—from managing heavy shedding during our warmer months to protecting sensitive skin from the elements.
                         </p>
-                        <p className="text-charcoal leading-relaxed text-lg font-medium">
+                        <p class="text-charcoal leading-relaxed text-lg font-medium">
                             Our long-standing history is a testament to the absolute trust our community places in us every single day.
                         </p>
                     </div>
                 </div>
 
-                <div className="bg-white p-10 md:p-16 rounded-3xl shadow-lg border border-gray-100 mb-20 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-pink-50 rounded-full -mr-20 -mt-20 opacity-50"></div>
-                    <div className="relative z-10">
-                        <h2 className="text-4xl font-serif font-bold text-black mb-6 text-center">Our Mission</h2>
-                        <p className="text-charcoal text-lg mb-10 leading-relaxed text-center max-w-4xl mx-auto">
+                <div class="bg-white p-10 md:p-16 rounded-3xl shadow-lg border border-gray-100 mb-20 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-pink-50 rounded-full -mr-20 -mt-20 opacity-50"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-4xl font-serif font-bold text-black mb-6 text-center">Our Mission</h2>
+                        <p class="text-charcoal text-lg mb-10 leading-relaxed text-center max-w-4xl mx-auto">
                             Our mission is simple: to provide an elite, premium grooming experience that doesn't compromise on competitive market value. We strive to set the gold standard in the pet care industry by combining high-end luxury with genuine, compassionate care that puts your pet's physical and mental health first.
                         </p>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                            <div className="text-center p-6 rounded-2xl bg-lightGrey border border-gray-100 hover:border-softPink transition">
-                                <div className="w-16 h-16 bg-softPink text-black rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm"><i className="fa-solid fa-heart-pulse"></i></div>
-                                <h4 className="font-bold text-xl mb-3 text-black">Holistic Health First</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed">Every bath, brush, and trim is meticulously designed to support your pet's dermatological and physical well-being. We exclusively use top-tier, pet-safe, and nourishing products.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                            <div class="text-center p-6 rounded-2xl bg-lightGrey border border-gray-100 hover:border-softPink transition">
+                                <div class="w-16 h-16 bg-softPink text-black rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm"><i class="fa-solid fa-heart-pulse"></i></div>
+                                <h4 class="font-bold text-xl mb-3 text-black">Holistic Health First</h4>
+                                <p class="text-sm text-gray-600 leading-relaxed">Every bath, brush, and trim is meticulously designed to support your pet's dermatological and physical well-being. We exclusively use top-tier, pet-safe, and nourishing products.</p>
                             </div>
-                            <div className="text-center p-6 rounded-2xl bg-lightGrey border border-gray-100 hover:border-softPink transition">
-                                <div className="w-16 h-16 bg-softPink text-black rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm"><i className="fa-solid fa-spa"></i></div>
-                                <h4 className="font-bold text-xl mb-3 text-black">Stress-Free Environment</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed">We know grooming can be scary. We maintain a calm, soothing, and unhurried atmosphere so your furry family members feel safe, loved, and relaxed throughout their entire spa day.</p>
+                            <div class="text-center p-6 rounded-2xl bg-lightGrey border border-gray-100 hover:border-softPink transition">
+                                <div class="w-16 h-16 bg-softPink text-black rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm"><i class="fa-solid fa-spa"></i></div>
+                                <h4 class="font-bold text-xl mb-3 text-black">Stress-Free Environment</h4>
+                                <p class="text-sm text-gray-600 leading-relaxed">We know grooming can be scary. We maintain a calm, soothing, and unhurried atmosphere so your furry family members feel safe, loved, and relaxed throughout their entire spa day.</p>
                             </div>
-                            <div className="text-center p-6 rounded-2xl bg-lightGrey border border-gray-100 hover:border-softPink transition">
-                                <div className="w-16 h-16 bg-softPink text-black rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm"><i className="fa-solid fa-award"></i></div>
-                                <h4 className="font-bold text-xl mb-3 text-black">Unmatched Value</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed">With two decades of expertise, our styling and safety standards are unmatched. We are proud to offer competitive pricing and aggressive marketing value for a truly luxurious, high-end service.</p>
+                            <div class="text-center p-6 rounded-2xl bg-lightGrey border border-gray-100 hover:border-softPink transition">
+                                <div class="w-16 h-16 bg-softPink text-black rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm"><i class="fa-solid fa-award"></i></div>
+                                <h4 class="font-bold text-xl mb-3 text-black">Unmatched Value</h4>
+                                <p class="text-sm text-gray-600 leading-relaxed">With two decades of expertise, our styling and safety standards are unmatched. We are proud to offer competitive pricing and aggressive marketing value for a truly luxurious, high-end service.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="text-center bg-black p-12 rounded-3xl shadow-xl">
-                    <h3 className="text-3xl font-serif font-bold text-white mb-6">Become Part of the Diamond Lux Family</h3>
-                    <p className="text-lightGrey mb-8 max-w-2xl mx-auto text-lg">Experience the difference that 20 years of dedicated, premium care makes for your pet.</p>
-                    <a href={bizInfo.phoneLink} className="inline-block bg-softPink text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-pink-300 transition shadow-xl transform hover:-translate-y-1">
-                        <i className="fa-solid fa-phone mr-2"></i> Call {bizInfo.phone}
+                <div class="text-center bg-black p-12 rounded-3xl shadow-xl">
+                    <h3 class="text-3xl font-serif font-bold text-white mb-6">Become Part of the Diamond Lux Family</h3>
+                    <p class="text-lightGrey mb-8 max-w-2xl mx-auto text-lg">Experience the difference that 20 years of dedicated, premium care makes for your pet.</p>
+                    <a href="tel:9046792971" class="inline-block bg-softPink text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-pink-300 transition shadow-xl transform hover:-translate-y-1">
+                        <i class="fa-solid fa-phone mr-2"></i> Call 904-679-2971
                     </a>
                 </div>
             </div>
-        );
+        </section>
 
-        // --- SERVICES PAGE ---
-        const ServicesList = () => (
-            <div className="max-w-7xl mx-auto py-16 px-4 fade-in">
-                <div className="text-center mb-16">
-                    <h1 className="text-5xl font-serif font-bold text-black mb-4">Our Luxury Services</h1>
-                    <p className="text-xl text-charcoal max-w-2xl mx-auto">Every pet receives a customized, stress-free spa experience. Browse our signature services below.</p>
+        <!-- SERVICES PAGE -->
+        <section id="services" class="page-section fade-in hidden">
+            <div class="max-w-7xl mx-auto py-16 px-4">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl font-serif font-bold text-black mb-4">Our Luxury Services</h1>
+                    <p class="text-xl text-charcoal max-w-2xl mx-auto">Every pet receives a customized, stress-free spa experience. Browse our signature services below.</p>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    {services.map(svc => (
-                        <div key={svc.id} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col sm:flex-row hover:shadow-xl transition-shadow">
-                            <div className="sm:w-2/5 h-48 sm:h-auto">
-                                <img src={svc.img} alt={svc.name} className="w-full h-full object-cover" />
-                            </div>
-                            <div className="p-6 sm:w-3/5 flex flex-col justify-between">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-black mb-2">{svc.name}</h3>
-                                    <p className="text-sm font-semibold text-gray-500 mb-3"><i className="fa-regular fa-clock mr-1"></i> {svc.duration}</p>
-                                    <p className="text-charcoal mb-4">{svc.desc}</p>
-                                </div>
-                                <a href={bizInfo.phoneLink} className="inline-block text-left font-bold text-black hover:text-softPink transition group w-fit">
-                                    Call to book this service <i className="fa-solid fa-arrow-right ml-1 transform group-hover:translate-x-1 transition"></i>
-                                </a>
-                            </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- Service 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col sm:flex-row hover:shadow-xl transition-shadow">
+                        <div class="sm:w-2/5 h-48 sm:h-auto">
+                            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=500&q=80" alt="Full Luxury Groom" class="w-full h-full object-cover" />
                         </div>
-                    ))}
-                </div>
-            </div>
-        );
-
-        const Home = ({ goToServices }) => (
-            <div className="fade-in">
-                <header className="relative bg-black">
-                    <div className="absolute inset-0">
-                        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=2000" alt="Luxury Dog Grooming" className="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition duration-1000" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    </div>
-                    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 flex flex-col items-center text-center">
-                        <span className="bg-softPink text-black px-4 py-1 rounded-full font-semibold tracking-widest uppercase mb-6 text-xs md:text-sm shadow-sm">Jacksonville's Premier Pet Spa</span>
-                        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                            Luxury Grooming for <br/>Pets That Deserve the Best
-                        </h1>
-                        <p className="text-lg md:text-xl text-lightGrey mb-10 max-w-2xl drop-shadow">
-                            Experience a stress-free, exceptionally clean, and family-friendly spa day for your furry companion. Safety and premium care guaranteed.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <a href={bizInfo.phoneLink} className="inline-block bg-softPink text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-pink-300 transition shadow-xl transform hover:-translate-y-1">
-                                <i className="fa-solid fa-phone mr-2"></i> Call to Book
+                        <div class="p-6 sm:w-3/5 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold text-black mb-2">Full Luxury Groom</h3>
+                                <p class="text-sm font-semibold text-gray-500 mb-3"><i class="fa-regular fa-clock mr-1"></i> Approx. 2-4 Hours</p>
+                                <p class="text-charcoal mb-4">Premium bath, full haircut, nail grinding, ear cleaning, and a spritz of luxury cologne.</p>
+                            </div>
+                            <a href="tel:9046792971" class="inline-block text-left font-bold text-black hover:text-softPink transition group w-fit">
+                                Call to book this service <i class="fa-solid fa-arrow-right ml-1 transform group-hover:translate-x-1 transition"></i>
                             </a>
-                            <button onClick={() => goToServices()} className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-black transition">
-                                View Services
-                            </button>
                         </div>
                     </div>
-                </header>
+                    
+                    <!-- Service 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col sm:flex-row hover:shadow-xl transition-shadow">
+                        <div class="sm:w-2/5 h-48 sm:h-auto">
+                            <img src="https://t4.ftcdn.net/jpg/02/96/15/07/360_F_296150735_3rtwuCmcx4hWVHXEdpzGqJHle8Doak4U.jpg" alt="Bath & Brush Spa" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="p-6 sm:w-3/5 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold text-black mb-2">Bath & Brush Spa</h3>
+                                <p class="text-sm font-semibold text-gray-500 mb-3"><i class="fa-regular fa-clock mr-1"></i> Approx. 2-4 Hours</p>
+                                <p class="text-charcoal mb-4">Invigorating massage bath, blow dry, thorough brush out, and nail trim.</p>
+                            </div>
+                            <a href="tel:9046792971" class="inline-block text-left font-bold text-black hover:text-softPink transition group w-fit">
+                                Call to book this service <i class="fa-solid fa-arrow-right ml-1 transform group-hover:translate-x-1 transition"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                <div className="bg-white border-b border-gray-200 py-8">
-                    <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-gray-100">
-                        <div><i className="fa-solid fa-shield-dog text-softPink text-3xl mb-3 drop-shadow-sm"></i><p className="font-semibold text-black">Safe & Certified</p></div>
-                        <div><i className="fa-solid fa-heart text-softPink text-3xl mb-3 drop-shadow-sm"></i><p className="font-semibold text-black">Stress-Free Care</p></div>
-                        <div><i className="fa-solid fa-star text-softPink text-3xl mb-3 drop-shadow-sm"></i><p className="font-semibold text-black">100+ Happy Clients</p></div>
-                        <div><i className="fa-solid fa-spray-can-sparkles text-softPink text-3xl mb-3 drop-shadow-sm"></i><p className="font-semibold text-black">Premium Products</p></div>
+                    <!-- Service 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col sm:flex-row hover:shadow-xl transition-shadow">
+                        <div class="sm:w-2/5 h-48 sm:h-auto">
+                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80" alt="De-shedding Treatment" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="p-6 sm:w-3/5 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold text-black mb-2">De-shedding Treatment</h3>
+                                <p class="text-sm font-semibold text-gray-500 mb-3"><i class="fa-regular fa-clock mr-1"></i> Approx. 2-4 Hours</p>
+                                <p class="text-charcoal mb-4">Specialized shampoo and intense undercoat removal for a cleaner home.</p>
+                            </div>
+                            <a href="tel:9046792971" class="inline-block text-left font-bold text-black hover:text-softPink transition group w-fit">
+                                Call to book this service <i class="fa-solid fa-arrow-right ml-1 transform group-hover:translate-x-1 transition"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col sm:flex-row hover:shadow-xl transition-shadow">
+                        <div class="sm:w-2/5 h-48 sm:h-auto">
+                            <img src="https://images.unsplash.com/photo-1591160690555-5debfba289f0?auto=format&fit=crop&w=500&q=80" alt="Puppy's First Spa" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="p-6 sm:w-3/5 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold text-black mb-2">Puppy's First Spa</h3>
+                                <p class="text-sm font-semibold text-gray-500 mb-3"><i class="fa-regular fa-clock mr-1"></i> Approx. 2-4 Hours</p>
+                                <p class="text-charcoal mb-4">Gentle introduction to grooming with a bath, light trim, and lots of love.</p>
+                            </div>
+                            <a href="tel:9046792971" class="inline-block text-left font-bold text-black hover:text-softPink transition group w-fit">
+                                Call to book this service <i class="fa-solid fa-arrow-right ml-1 transform group-hover:translate-x-1 transition"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <section className="bg-black py-24 text-center px-4">
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">Treat Your Pet to Luxury Today</h2>
-                    <p className="text-lightGrey mb-10 max-w-xl mx-auto text-lg">Join the Diamond Lux family and give your pet the safe, premium grooming experience they deserve.</p>
-                    <a href={bizInfo.phoneLink} className="inline-block bg-softPink text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-pink-300 transition shadow-xl transform hover:-translate-y-1">
-                        <i className="fa-solid fa-phone mr-2"></i> Call {bizInfo.phone} to Book
-                    </a>
-                </section>
             </div>
-        );
+        </section>
 
-        const Contact = () => (
-            <div className="pt-16 pb-32 max-w-7xl mx-auto px-4 fade-in min-h-[70vh]">
-                <div className="text-center mb-16">
-                    <h1 className="text-5xl font-serif font-bold text-black mb-4">Contact & Location</h1>
-                    <p className="text-xl text-charcoal">We look forward to pampering your pet.</p>
+        <!-- CONTACT PAGE -->
+        <section id="contact" class="page-section fade-in hidden">
+            <div class="pt-16 pb-32 max-w-7xl mx-auto px-4 min-h-[70vh]">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl font-serif font-bold text-black mb-4">Contact & Location</h1>
+                    <p class="text-xl text-charcoal">We look forward to pampering your pet.</p>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-gray-100">
                     <div>
-                        <h3 className="text-2xl font-serif font-bold text-black mb-6">Visit Our Spa</h3>
-                        <div className="space-y-6">
-                            <div className="flex items-start">
-                                <div className="bg-pink-50 p-3 rounded-full text-softPink mr-4">
-                                    <i className="fa-solid fa-location-dot text-xl"></i>
+                        <h3 class="text-2xl font-serif font-bold text-black mb-6">Visit Our Spa</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-pink-50 p-3 rounded-full text-softPink mr-4">
+                                    <i class="fa-solid fa-location-dot text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-black text-lg">Address</h4>
-                                    <p className="text-charcoal mt-1">12276 San Jose Blvd suite 713<br/>Jacksonville, FL 32223</p>
+                                    <h4 class="font-bold text-black text-lg">Address</h4>
+                                    <p class="text-charcoal mt-1">12276 San Jose Blvd suite 713<br/>Jacksonville, FL 32223</p>
                                 </div>
                             </div>
                             
-                            <div className="flex items-start">
-                                <div className="bg-pink-50 p-3 rounded-full text-softPink mr-4">
-                                    <i className="fa-solid fa-phone text-xl"></i>
+                            <div class="flex items-start">
+                                <div class="bg-pink-50 p-3 rounded-full text-softPink mr-4">
+                                    <i class="fa-solid fa-phone text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-black text-lg">Phone</h4>
-                                    <a href={bizInfo.phoneLink} className="text-charcoal mt-1 hover:text-softPink transition inline-block">{bizInfo.phone}</a>
+                                    <h4 class="font-bold text-black text-lg">Phone</h4>
+                                    <a href="tel:9046792971" class="text-charcoal mt-1 hover:text-softPink transition inline-block">904-679-2971</a>
                                 </div>
                             </div>
 
-                            <div className="flex items-start">
-                                <div className="bg-pink-50 p-3 rounded-full text-softPink mr-4">
-                                    <i className="fa-solid fa-clock text-xl"></i>
+                            <div class="flex items-start">
+                                <div class="bg-pink-50 p-3 rounded-full text-softPink mr-4">
+                                    <i class="fa-solid fa-clock text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-black text-lg">Business Hours</h4>
-                                    <ul className="text-charcoal mt-1 space-y-1">
-                                        <li><span className="font-semibold w-24 inline-block">Tue - Fri:</span> 8:30 AM – 6:00 PM</li>
-                                        <li><span className="font-semibold w-24 inline-block">Sat:</span> 10:00 AM – 5:00 PM</li>
-                                        <li className="text-softPink font-semibold mt-2">Sun & Mon: Closed</li>
+                                    <h4 class="font-bold text-black text-lg">Business Hours</h4>
+                                    <ul class="text-charcoal mt-1 space-y-1">
+                                        <li><span class="font-semibold w-24 inline-block">Tue - Fri:</span> 8:30 AM – 6:00 PM</li>
+                                        <li><span class="font-semibold w-24 inline-block">Sat:</span> 10:00 AM – 5:00 PM</li>
+                                        <li class="text-softPink font-semibold mt-2">Sun & Mon: Closed</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         
-                        <a href={bizInfo.phoneLink} className="mt-10 inline-block text-center bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-charcoal transition w-full md:w-auto shadow-md">
-                            <i className="fa-solid fa-phone mr-2"></i> Call to Book
+                        <a href="tel:9046792971" class="mt-10 inline-block text-center bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-charcoal transition w-full md:w-auto shadow-md">
+                            <i class="fa-solid fa-phone mr-2"></i> Call to Book
                         </a>
                     </div>
                     
-                    <div className="bg-lightGrey rounded-2xl overflow-hidden h-64 md:h-full min-h-[300px] border border-gray-200">
+                    <div class="bg-lightGrey rounded-2xl overflow-hidden h-64 md:h-full min-h-[300px] border border-gray-200">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3450.4571991864115!2d-81.6263435848827!3d30.13840748184784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e5cf5ec79a11a9%3A0x6e9f225eb5782782!2s12276%20San%20Jose%20Blvd%20Suite%20713%2C%20Jacksonville%2C%20FL%2032223!5e0!3m2!1sen!2sus!4v1698249000000!5m2!1sen!2sus" 
                             width="100%" 
                             height="100%" 
-                            style={{border:0}} 
-                            allowFullScreen="" 
+                            style="border:0;" 
+                            allowfullscreen="" 
                             loading="lazy" 
-                            referrerPolicy="no-referrer-when-downgrade">
+                            referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
             </div>
-        );
+        </section>
 
-        const Footer = () => (
-            <footer className="bg-black text-lightGrey py-16 border-t-4 border-softPink">
-                <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
-                    <div>
-                        <div className="flex items-center mb-6">
-                            <span className="font-serif font-bold text-2xl text-white tracking-wide">
-                                Diamond Lux <span className="text-softPink">Pet Spa</span>
-                            </span>
-                        </div>
-                        <p className="text-sm text-gray-400 leading-relaxed">Jacksonville's premier luxury pet spa, dedicated to safe, clean, and premium care for your furry family members.</p>
-                    </div>
-                    <div>
-                        <h4 className="text-white font-bold mb-6 uppercase text-sm tracking-wider">Contact Us</h4>
-                        <ul className="space-y-3 text-sm text-gray-400">
-                            <li><i className="fa-solid fa-phone mr-2 text-softPink"></i> <a href={bizInfo.phoneLink} className="hover:text-white transition">{bizInfo.phone}</a></li>
-                            <li className="leading-relaxed"><i className="fa-solid fa-location-dot mr-2 text-softPink"></i> {bizInfo.address}</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 className="text-white font-bold mb-6 uppercase text-sm tracking-wider">Hours</h4>
-                        <ul className="space-y-3 text-sm text-gray-400">
-                            <li><span className="text-white font-semibold">Tue - Fri:</span><br/>8:30 AM - 6:00 PM</li>
-                            <li><span className="text-white font-semibold">Sat:</span><br/>10:00 AM - 5:00 PM</li>
-                            <li><span className="text-softPink font-semibold">Sun & Mon:</span> Closed</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 className="text-white font-bold mb-6 uppercase text-sm tracking-wider">Follow Us</h4>
-                        <div className="flex space-x-4">
-                            <a href="#" className="w-10 h-10 bg-charcoal rounded-full flex items-center justify-center text-white hover:bg-softPink hover:text-black transition"><i className="fa-brands fa-instagram"></i></a>
-                            <a href="#" className="w-10 h-10 bg-charcoal rounded-full flex items-center justify-center text-white hover:bg-softPink hover:text-black transition"><i className="fa-brands fa-facebook"></i></a>
-                            <a href="#" className="w-10 h-10 bg-charcoal rounded-full flex items-center justify-center text-white hover:bg-softPink hover:text-black transition"><i className="fa-brands fa-tiktok"></i></a>
-                        </div>
-                    </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-lightGrey py-16 border-t-4 border-softPink">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center mb-6">
+                    <span class="font-serif font-bold text-2xl text-white tracking-wide">
+                        Diamond Lux <span class="text-softPink">Pet Spa</span>
+                    </span>
                 </div>
-                <div className="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-gray-800 text-sm text-center text-gray-500">
-                    © {new Date().getFullYear()} Diamond Lux Pet Spa. Designed for Conversion. SEO: Pet Grooming Jacksonville FL.
+                <p class="text-sm text-gray-400 leading-relaxed">Jacksonville's premier luxury pet spa, dedicated to safe, clean, and premium care for your furry family members.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Contact Us</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><i class="fa-solid fa-phone mr-2 text-softPink"></i> <a href="tel:9046792971" class="hover:text-white transition">904-679-2971</a></li>
+                    <li class="leading-relaxed"><i class="fa-solid fa-location-dot mr-2 text-softPink"></i> 12276 San Jose Blvd suite 713, Jacksonville, FL 32223</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Hours</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><span class="text-white font-semibold">Tue - Fri:</span><br/>8:30 AM - 6:00 PM</li>
+                    <li><span class="text-white font-semibold">Sat:</span><br/>10:00 AM - 5:00 PM</li>
+                    <li><span class="text-softPink font-semibold">Sun & Mon:</span> Closed</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-charcoal rounded-full flex items-center justify-center text-white hover:bg-softPink hover:text-black transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 bg-charcoal rounded-full flex items-center justify-center text-white hover:bg-softPink hover:text-black transition"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="w-10 h-10 bg-charcoal rounded-full flex items-center justify-center text-white hover:bg-softPink hover:text-black transition"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
-            </footer>
-        );
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-gray-800 text-sm text-center text-gray-500">
+            © 2024 Diamond Lux Pet Spa. Designed for Conversion. SEO: Pet Grooming Jacksonville FL.
+        </div>
+    </footer>
 
-        const App = () => {
-            const [view, setView] = useState('home');
-
-            useEffect(() => {
-                window.scrollTo(0, 0);
-            }, [view]);
-
-            const goToHome = () => setView('home');
-            const goToAbout = () => setView('about');
-            const goToServices = () => setView('services');
-            const goToContact = () => setView('contact');
-
-            return (
-                <div className="font-sans text-charcoal flex flex-col min-h-screen">
-                    <UrgencyBanner />
-                    <Navbar goToHome={goToHome} goToAbout={goToAbout} goToServices={goToServices} goToContact={goToContact} />
-                    
-                    <main className="flex-grow">
-                        {view === 'home' && <Home goToServices={goToServices} />}
-                        {view === 'about' && <AboutUs />}
-                        {view === 'contact' && <Contact />}
-                        {view === 'services' && <ServicesList />}
-                    </main>
-
-                    <Footer />
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+    <!-- Simple Javascript to handle navigation between pages -->
+    <script>
+        function showPage(pageId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(function(section) {
+                section.classList.add('hidden');
+                // Remove animation to reset it
+                section.classList.remove('fade-in'); 
+            });
+            
+            // Show the target section
+            const targetSection = document.getElementById(pageId);
+            targetSection.classList.remove('hidden');
+            
+            // Trigger reflow to restart animation
+            void targetSection.offsetWidth; 
+            targetSection.classList.add('fade-in');
+            
+            // Scroll to the top of the page smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
