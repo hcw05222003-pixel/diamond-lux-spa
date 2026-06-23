@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Removed React and Babel. Only keeping Tailwind CSS -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
@@ -51,23 +51,31 @@
     <!-- NAVBAR -->
     <nav class="sticky top-0 z-50 glass shadow-sm border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
+            <!-- Changed to flex-col on small screens so everything stacks nicely -->
+            <div class="flex flex-col md:flex-row justify-between items-center py-4 md:py-0 md:h-20 gap-4 md:gap-0">
+                
+                <!-- Logo -->
                 <div class="flex items-center cursor-pointer" onclick="showPage('home')">
                     <span class="font-serif font-bold text-2xl text-black tracking-wide">
                         Diamond Lux <span class="text-softPink">Pet Spa</span>
                     </span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <button onclick="showPage('home')" class="text-charcoal hover:text-softPink transition font-medium">Home</button>
-                    <button onclick="showPage('about')" class="text-charcoal hover:text-softPink transition font-medium">About Us</button>
-                    <button onclick="showPage('services')" class="text-charcoal hover:text-softPink transition font-medium">Services</button>
-                    <button onclick="showPage('contact')" class="text-charcoal hover:text-softPink transition font-medium">Contact</button>
+                
+                <!-- Links (Now visible on ALL screens!) -->
+                <div class="flex flex-wrap justify-center space-x-4 md:space-x-8">
+                    <button onclick="showPage('home')" class="text-charcoal hover:text-softPink transition font-medium text-sm md:text-base">Home</button>
+                    <button onclick="showPage('about')" class="text-charcoal hover:text-softPink transition font-medium text-sm md:text-base">About Us</button>
+                    <button onclick="showPage('services')" class="text-charcoal hover:text-softPink transition font-medium text-sm md:text-base">Services</button>
+                    <button onclick="showPage('contact')" class="text-charcoal hover:text-softPink transition font-medium text-sm md:text-base">Contact</button>
                 </div>
-                <div>
-                    <a href="tel:9046792971" class="inline-block bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-charcoal transition shadow-lg transform hover:-translate-y-0.5 border border-black">
+
+                <!-- Call Button (Hidden on tiny screens so tabs fit, visible on tablets/desktop) -->
+                <div class="hidden sm:block">
+                    <a href="tel:9046792971" class="inline-block bg-black text-white px-6 py-2 md:py-3 rounded-full font-medium hover:bg-charcoal transition shadow-lg transform hover:-translate-y-0.5 border border-black text-sm md:text-base">
                         <i class="fa-solid fa-phone mr-2"></i>Call to Book
                     </a>
                 </div>
+                
             </div>
         </div>
     </nav>
